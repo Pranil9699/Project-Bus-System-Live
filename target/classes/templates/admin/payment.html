@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" th:href="@{/css/payment.css}">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Bus Ticket Payment</title>
+<style>
+.btn-cancel {
+	background-color: red;
+	color: white;
+}
+
+/* Optionally, you can add padding to the Cancel button */
+.btn-cancel {
+	padding: 5px 10px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="payment-form">
+			<h1>Bus Ticket Payment</h1>
+			<form id="paymentForm" action="#" method="post">
+				<input type="hidden" id="bookingId" name="bookingId"
+					th:value="${booking_id}">
+				<!-- Example booking ID -->
+
+
+				<label for="amount">Amount</label> <input type="text" id="amount"
+					name="amount" th:value="${totalAmount}" readonly>
+				<!-- Amount should be in paisa -->
+				<label for="customer-name">Customer Name</label> <input type="text"
+					id="customer-name" name="customer-name"
+					placeholder="Enter your name" required>
+				<div class=" text-center mt-3">
+					<button type="button" class="btn btn-success"
+						onclick="paymentStart('admin')">Make Payment</button>
+					<button type="button" class="btn btn-danger" id="cancelBtn">Cancel</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}">
+	</script>
+	<script type="text/javascript">
+
+	// Add a click event listener to the Cancel button
+	document.getElementById('cancelBtn').addEventListener('click', function() {
+	    // Display a confirmation dialog
+	    swal({
+	        title: "Are you sure?",
+	        text: "Do you want to abort the payment?",
+	        icon: "warning",
+	        buttons: ["No", "Yes"],
+	        dangerMode: true,
+	    })
+	    .then((willAbort) => {
+	        if (willAbort) {
+	            // Redirect user to home screen if they choose to abort
+	            window.location.href = "/admin/";
+	        }
+	    });
+	});</script>
+</body>
+</html>

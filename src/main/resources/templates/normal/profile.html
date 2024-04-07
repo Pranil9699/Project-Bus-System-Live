@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            padding-top: 20px;
+        }
+
+        .card {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: none;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .modal-content {
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            border-bottom: none;
+            padding: 20px;
+        }
+
+        .modal-title {
+            font-weight: bold;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>User Profile</h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Full Name: <span th:text="${user.fullName}"></span></h5>
+                <p class="card-text">Email: <span th:text="${user.email}"></span></p>
+                <p class="card-text">Gender: <span th:text="${user.gender}"></span></p>
+                <p class="card-text">Phone Number: <span th:text="${user.phoneNumber}"></span></p>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">Update Profile</button>
+                <form th:action="@{/user/profile/delete}" method="post" onsubmit="return confirm('Are you sure you want to delete your account?');">
+                    <button type="submit" class="btn btn-danger">Delete Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Profile Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Update Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/user/profile/update}" method="post">
+                        <input type="hidden" th:value="${user.userId}" name="userId">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" name="fullName" th:value="${user.fullName}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" id="gender" name="gender" required>
+                                <option value="Male" th:selected="${user.gender == 'Male'}">Male</option>
+                                <option value="Female" th:selected="${user.gender == 'Female'}">Female</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" th:value="${user.phoneNumber}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

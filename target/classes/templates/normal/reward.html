@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Your Experience</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+body {
+	font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background: url('../static/img/back_image.jpg') center/cover no-repeat;
+	background-blend-mode: overlay;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.container {
+	text-align: center;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+	animation: glow 2s ease-out infinite alternate;
+}
+
+@keyframes glow { 0% {
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+100%
+{
+box-shadow
+:
+0
+0
+40px
+rgba(
+255
+,
+255
+,
+255
+,
+1
+);
+}
+}
+h2 {
+	margin-bottom: 20px;
+	color: #333;
+}
+
+.stars {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+	filter: drop-shadow(0 0 10px #ffcc00);
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+label {
+	cursor: pointer;
+	font-size: 30px;
+	color: #ccc;
+	margin: 0 5px;
+	transition: color 0.3s ease;
+}
+
+input[type="radio"]:checked+label {
+	color: #ffcc00;
+}
+
+textarea {
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+}
+
+button {
+	padding: 10px;
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Rate Your Experience</h2>
+		
+		<div class="stars">
+			<input type="radio" id="star5" name="rating" value="5"><label
+				for="star5">&#9733;</label> <input type="radio" id="star4"
+				name="rating" value="4"><label for="star4">&#9733;</label> <input
+				type="radio" id="star3" name="rating" value="3"><label
+				for="star3">&#9733;</label> <input type="radio" id="star2"
+				name="rating" value="2"><label for="star2">&#9733;</label> <input
+				type="radio" id="star1" name="rating" value="1"><label
+				for="star1">&#9733;</label>
+		</div>
+		<form th:action="@{/user/feedback}" method="post">
+		<textarea placeholder="Write your feedback" name="ratingContent"></textarea>
+		<button type="submit">Submit Rating</button>
+		</form>
+	</div>
+</body>
+</html>

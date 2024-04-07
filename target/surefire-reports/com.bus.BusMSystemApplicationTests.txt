@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.bus.BusMSystemApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 35.849 s - in com.bus.BusMSystemApplicationTests

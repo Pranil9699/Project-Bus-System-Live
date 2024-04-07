@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous">
+</head>
+<body>
+
+
+	<section>
+		<div class="container" th:if="${user}">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="my-card mt-3 mb-3">
+						<div class="alert text-center" th:if="${session.message}"
+							th:classappend="${session.message.type}">
+							<p th:text="${session.message.content}"></p>
+							<th:block
+								th:text="${@sessionHelper.removeSessionAttribute('message')}"></th:block>
+						</div>
+						<fieldset>
+							<legend>Forgot Password</legend>
+							<form th:action="@{/do_checkemailAndotp}" method="post"
+								th:object="${user}">
+
+								<input type="hidden" name="email" th:value="${user.email}" />
+
+								<!-- OTP Field -->
+								<div class="mb-3">
+									<label for="exampleInputOtp1" class="form-label card-title">Enter
+										OTP Here</label> <input type="text" required
+										placeholder="Enter OTP Here..." class="form-control"
+										id="exampleInputOtp1" name="otp" />
+								</div>
+								<div class="container text-center">
+									<button type="submit" class="btn btn-success m-3">Submit</button>
+									<button type="reset" class="btn btn-warning">Reset</button>
+								</div>
+							</form>
+						</fieldset>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="container" th:if="${user==null}">
+			<script type="text/javascript">
+				location.href = "/login-error";
+			</script>
+		</div>
+	</section>
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login page in HTML</title>
+<link rel="stylesheet" th:href="@{/css/login1.css}">
+</head>
+<body>
+	<form th:action="@{/dologin}" method="post">
+		<!-- Headings for the form -->
+		<div class="headingsContainer">
+			<div th:if="${error}" class="error">
+				<p th:text="${error}"></p>
+			</div>
+
+			<!-- JavaScript to remove the error message after 5 seconds -->
+			<script th:inline="javascript">
+				setTimeout(function() {
+					var errorDiv = document.querySelector('.error');
+					if (errorDiv) {
+						errorDiv.remove();
+					}
+				}, 5000); // 5 seconds
+			</script>
+			<h2 class="display-1 text-center">Sign in</h2>
+
+		</div>
+		<!-- Main container for all inputs -->
+		<div class="mainContainer">
+			<!-- Username -->
+			<label for="username">Your username</label> <input type="text"
+				placeholder="Enter Username" name="username" required><br>
+			<br>
+
+			<!-- Password -->
+			<label for="password">Your password</label> <input type="password"
+				placeholder="Enter Password" name="password" required>
+
+			<!-- Checkbox and forgot password link -->
+			<div class="subcontainer">
+				<label><input type="checkbox" checked="checked"
+					name="remember"> Remember me</label>
+				<p class="forgotpsd">
+					<a th:href="@{/forgotPassword}">Forgot Password?</a>
+				</p>
+			</div>
+
+			<!-- Submit button -->
+			<button type="submit">Login</button>
+
+			<!-- Sign up link -->
+			<p class="register">
+				Not a member? <a th:href="@{/register}">Register here!</a>
+			</p>
+		</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/contact1.css}">
+</head>
+
+<section>
+    
+    <div class="section-header">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>A Corporate travel itinerary helps business travelers plan their trips efficiently. Here are few details travel managers must include in their itinerary.</p>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            
+            <div class="contact-info-content">
+                <h4>Address</h4>
+                <p>1 Lt.Col. Tarapore Road,Camp,Pune, 411001</p>
+              </div>
+            </div>
+            
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              
+              <div class="contact-info-content">
+                <h4>Phone</h4>
+                <p>571-457-2321</p>
+              </div>
+            </div>
+            
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              
+              <div class="contact-info-content">
+                <h4>Email</h4>
+               <p>rubyyadav0188@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-form">
+            <form th:action="@{/user/contact}" id="contact-form" method="POST">
+              <h2>Send Message</h2>
+              <div class="input-box">
+                <input type="text" required="required" name="fullName">
+                <span>Full Name</span>
+              </div>
+              
+              <div class="input-box">
+                <input type="email" required="required" name="email">
+                <span>Email</span>
+              </div>
+              
+              <div class="input-box">
+                <textarea required="required" name="content"></textarea>
+                <span>Type your Message...</span>
+              </div>
+              
+              <div class="input-box">
+                <input type="submit" value="Send" name="">
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  
