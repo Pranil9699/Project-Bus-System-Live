@@ -69,7 +69,7 @@ public class HomeController {
 
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			user.setEnabled(true);
-			user.setRole("ROLE_ADMIN");
+			user.setRole("ROLE_USER");
 			User result = userRepository.save(user);
 			session.setAttribute("message", new Message("SuccessFully Registered !!", "alert-success"));
 			System.out.println(result.toString());
